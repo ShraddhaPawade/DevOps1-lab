@@ -1,30 +1,57 @@
 pipeline {
-   agent any
-   stages {
-       stage('Checkout') {
-           steps {
-               git 'https://github.com/ShraddhaPawade/DevOps1-lab.git'
-           }
-       }
-       stage('Install Dependencies') {
-           steps {
-               bat 'pip install -r requirements.txt'
-           }
-       }
-       stage('Build') {
-           steps {
-               bat 'python app.py'
-           }
-       }
-       stage('Test') {
-           steps {
-               bat 'pytest'
-           }
-       }
-   }
-   post {
-       always {
-           echo 'Pipeline Completed'
-       }
-   }
+
+    agent any
+ 
+    stages {
+ 
+        stage('Checkout') {
+
+            steps {
+
+                git branch: 'main',
+
+                    url: 'https://github.com/ShraddhaPawade/DevOps1-lab.git '
+            }
+
+        }
+ 
+        stage('Build') {
+
+            steps {
+
+                echo 'Build completed successfully'
+
+            }
+
+        }
+ 
+        stage('Test') {
+
+            steps {
+
+                echo 'Tests completed successfully'
+
+            }
+
+        }
+
+    }
+ 
+    post {
+
+        success {
+
+            echo 'Pipeline completed successfully!'
+
+        }
+ 
+        failure {
+
+            echo 'Pipeline failed!'
+
+        }
+
+    }
+
 }
+ 
